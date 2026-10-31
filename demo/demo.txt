@@ -1,0 +1,32 @@
+# ── 1. 저장소 초기화와 첫 커밋 ──
+init "Alice"
+commit "Initial commit"
+# ── 2. 브랜치 분기 — 브랜치는 '커밋을 가리키는 이름표'일 뿐이다 ──
+branch feature
+switch feature
+commit "Add login feature"
+switch main
+commit "Add payment feature"
+# ── 3. LOG — 최신순이 아니라 '부모가 자식보다 먼저' (위상 정렬) ──
+log
+# ── 4. PATH — 3faa7b 와 e18585 는 형제다. 공통 조상을 거쳐 돌아간다 ──
+path 3faa7b e18585
+# ── 5. ANCESTORS — 도달 가능한 모든 조상 ──
+ancestors e18585
+# ── 6. SEARCH — 역색인 기반. 전체 커밋을 훑지 않는다 ──
+search login
+search --author=Alice
+search --author=Bob
+# ── 7. 직접 구현한 정렬 (sorted() 금지) ──
+log --sort-by=date
+log --sort-by=author
+# ── 8. 보너스 2: merge — 부모가 2개인 커밋 ──
+merge feature
+log
+ancestors 8de5f3
+# ── 9. 에러 표준 ──
+switch 없는브랜치
+ancestors zzzzzz
+path onlyone
+# ── 10. 보너스 1: diff (LCS 기반 줄 단위 비교) ──
+diff demo/sample_a.txt demo/sample_b.txt
